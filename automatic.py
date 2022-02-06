@@ -1,5 +1,6 @@
-from manual.py import Manual 
-
+from manual import Manual 
+import RPi.GPIO as GPIO
+from time import sleep
 
 def followLine (bot, rSensor, lSensor):
     lineValue = 1200
@@ -8,7 +9,7 @@ def followLine (bot, rSensor, lSensor):
     interval = 0.5
     pauseTime = 30
 
-    while (true):
+    while (True):
         if (rSensor == lineValue and lSensor == lineValue):
             bot.pause(pauseTime)
         elif (rSensor != lineValue and lSensor != lineValue):
@@ -17,6 +18,15 @@ def followLine (bot, rSensor, lSensor):
             bot.right(turnSpeed, interval)
         elif (rSensor != lineValue and lSensor == lineValue):
             bot.left(turnSpeed, interval)
+
+
+GPIO.setmode(GPIO.BCM)
+
+lSensor = 23 #gpio pin
+rSensor = 24 #gpio pin
+
+GPIO.setup(lSensor, GPIO.IN)
+GPIO.setup(rSensor, GPIO.IN)
 
 bot = Manual()
 followLine(bot, rSensor, lSensor)

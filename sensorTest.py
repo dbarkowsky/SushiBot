@@ -3,7 +3,7 @@ from time import sleep
 
 GPIO.setmode(GPIO.BCM)
 
-sensor = 17 #gpio pin
+sensor = 23 #gpio pin
 
 GPIO.setup(sensor, GPIO.IN)
 
