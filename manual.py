@@ -1,4 +1,5 @@
-from adafruit_motorkit import MotorKit
+#from adafruit_motorkit import MotorKit
+from mockMotor import MotorKit
 import time
 
 class Manual:
@@ -72,7 +73,7 @@ class Manual:
 
 	#pause for a second, then continue forwards just a bit
 	def pause(self, seconds):
-		print("Pause, Time=" + seconds)
+		print("Pause, Time=" + str(seconds))
 		self.kit.motor1.throttle = 0
 		self.kit.motor2.throttle = 0
 		self.kit.motor3.throttle = 0
