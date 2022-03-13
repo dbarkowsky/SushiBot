@@ -47,27 +47,27 @@ class Manual:
 		print("Right, Speed=" + str(speed) + ", Time=" + str(seconds))
 		self.speed = abs(speed)
 		self.kit.motor1.throttle = self.speed
-		self.kit.motor2.throttle = -self.speed
+		self.kit.motor2.throttle = 0
 		self.kit.motor3.throttle = self.speed
-		self.kit.motor4.throttle = -self.speed
+		self.kit.motor4.throttle = 0
 		time.sleep(seconds)
 		#self.coast()
 
 	def right(self, speed, seconds):
 		print("Right")
 		self.kit.motor1.throttle = 0.8
-		self.kit.motor2.throttle = 0.5
+		self.kit.motor2.throttle = 0
 		self.kit.motor3.throttle = 0.8
-		self.kit.motor4.throttle = 0.5
+		self.kit.motor4.throttle = 0
 		time.sleep(seconds)
 
 	#motors 2, 4 full speed; motors 1, 3 speed determined by TURN_VARIABLE constant
 	def leftTank(self, speed, seconds):
 		print("Left, Speed=" + str(speed) + ", Time=" + str(seconds))
 		self.speed = abs(speed)
-		self.kit.motor1.throttle = -self.speed
+		self.kit.motor1.throttle = 0
 		self.kit.motor2.throttle = self.speed
-		self.kit.motor3.throttle = -self.speed
+		self.kit.motor3.throttle = 0
 		self.kit.motor4.throttle = self.speed
 		time.sleep(seconds)
 		#self.coast()
