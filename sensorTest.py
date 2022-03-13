@@ -10,9 +10,9 @@ GPIO.setup(sensor, GPIO.IN)
 try:
     while True:
         if (GPIO.input(sensor)):
-            print("on line")
+            print("on line " + str(GPIO.input(sensor)))
         else:
-            print("off line")
+            print("off line " + str(GPIO.input(sensor)))
 
         sleep(0.5)
 except KeyboardInterrupt:

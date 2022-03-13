@@ -3,21 +3,22 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 def followLine (bot, rSensor, lSensor):
-    lineValue = 1
-    straightSpeed = 0.6
-    turnSpeed = 0.8
-    interval = 0.5
-    pauseTime = 30
+    straightSpeed = 0.8
+    turnSpeed = 0.9
+    interval = 0.05
+    pauseTime = 6
 
     while (True):
-        if (GPIO.input(rSensor) and GPIO.input(lSensor)):
+        if (not GPIO.input(rSensor) and not GPIO.input(lSensor)):
             bot.pause(pauseTime)
-        elif (not GPIO.input(rSensor) and not GPIO.input(lSensor)):
+        elif (GPIO.input(rSensor) and GPIO.input(lSensor)):
             bot.forward(straightSpeed, interval)
-        elif (GPIO.input(rSensor) and not GPIO.input(lSensor)):
-            bot.right(turnSpeed, interval)
         elif (not GPIO.input(rSensor) and GPIO.input(lSensor)):
-            bot.left(turnSpeed, interval)
+            bot.rightTank(turnSpeed, interval)
+            #bot.right(turnSpeed, interval)
+        elif (GPIO.input(rSensor) and not GPIO.input(lSensor)):
+            bot.leftTank(turnSpeed, interval)
+            #bot.left(turnSpeed, interval)
 
 
 GPIO.setmode(GPIO.BCM)
