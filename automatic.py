@@ -6,19 +6,25 @@ def followLine (bot, rSensor, lSensor):
     straightSpeed = 0.8
     turnSpeed = 0.9
     interval = 0.05
-    pauseTime = 6
+    pauseTime = 3
 
     while (True):
-        if (not GPIO.input(rSensor) and not GPIO.input(lSensor)):
-            bot.pause(pauseTime)
-        elif (GPIO.input(rSensor) and GPIO.input(lSensor)):
-            bot.forward(straightSpeed, interval)
-        elif (not GPIO.input(rSensor) and GPIO.input(lSensor)):
-            bot.rightTank(turnSpeed, interval)
-            #bot.right(turnSpeed, interval)
-        elif (GPIO.input(rSensor) and not GPIO.input(lSensor)):
-            bot.leftTank(turnSpeed, interval)
-            #bot.left(turnSpeed, interval)
+        try:
+            if (not GPIO.input(rSensor) and not GPIO.input(lSensor)):
+                bot.pause(pauseTime)
+            elif (GPIO.input(rSensor) and GPIO.input(lSensor)):
+                bot.forward(straightSpeed, interval)
+            elif (not GPIO.input(rSensor) and GPIO.input(lSensor)):
+                bot.rightTank(turnSpeed, interval)
+                #bot.right(turnSpeed, interval)
+            elif (GPIO.input(rSensor) and not GPIO.input(lSensor)):
+                bot.leftTank(turnSpeed, interval)
+                #bot.left(turnSpeed, interval)
+        except KeyboardInterrupt as err:
+            bot.stop()
+            print('Program ended.')
+            break
+        
 
 
 GPIO.setmode(GPIO.BCM)
